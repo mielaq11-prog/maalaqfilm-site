@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>قناة المعلاق للأفلام - MaalaqFilm</title>
+  
+  <!-- استيراد خط القاهرة الفاخر المماثل لخط منصة شاهد (Shahid Font style) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Cairo', 'Tajawal', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              gold: '#F59E0B',
+              darkGold: '#D97706',
+              charcoal: '#0C0C0E',
+              pitch: '#050507',
+              red: '#EF4444',
+            }
+          },
+          boxShadow: {
+            'glow-gold': '0 0 25px rgba(245, 158, 11, 0.25)',
+            'glow-red': '0 0 25px rgba(239, 68, 68, 0.25)',
+            'card-hover': '0 12px 35px rgba(0, 0, 0, 0.6)',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* تحسين وتخصيص شريط التمرير */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #050507;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1C1917;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #F59E0B;
+    }
+    
+    @keyframes pulse-slow {
+      0%, 100% { opacity: 0.4; transform: scale(1); }
+      50% { opacity: 0.7; transform: scale(1.03); }
+    }
+    .ambient-glow {
+      animation: pulse-slow 6s infinite ease-in-out;
+    }
+
+    /* تأثير وضع التعتيم السينمائي الكامل */
+    .cinema-focus-active::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: rgba(3, 3, 4, 0.96);
+      z-index: 40;
+      pointer-events: none;
+      transition: all 0.5s ease;
+    }
+  </style>
+</head>
+<body class="bg-brand-pitch text-gray-200 selection:bg-brand-gold selection:text-black transition-colors duration-700">
+
+  <!-- طبقة التعتيم الخلفية لوضع السينما -->
+  <div id="lights-out-overlay" class="fixed inset-0 bg-black/90 z-40 hidden pointer-events-none transition-opacity duration-500 opacity-0"></div>
+
+  <!-- ==================== رأس الصفحة المميز (Shahid Style Header) ==================== -->
+  <header class="sticky top-0 z-50 bg-brand-pitch/95 border-b border-zinc-900/40 backdrop-blur-md px-6 py-4 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <!-- أيقونة الشعار السينمائية الذهبية -->
+      <div class="w-12 h-12 bg-gradient-to-br from-brand-gold to-amber-600 rounded-2xl flex items-center justify-center border border-amber-500/30 shadow-glow-gold">
+        <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z" />
+        </svg>
+      </div>
+      <div>
+        <!-- اسم القناة بخط Cairo العريض وتصميم منصة شاهد الفاخر -->
+        <h1 class="text-xl md:text-2xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-l from-white via-stone-200 to-brand-gold select-none leading-none">
+          قناة المعلاق
+        </h1>
+        <span class="text-[9px] text-zinc-500 tracking-widest block uppercase font-bold mt-1.5">MAALAQFILM • Premium Cinematic Web</span>
+      </div>
+    </div>
+
+    <!-- قائمة تصفح الروابط للتنقل السريع بين أقسام الموقع -->
+    <nav class="hidden lg:flex items-center gap-8 text-xs font-bold text-zinc-400 uppercase tracking-wider">
+      <a href="#hero" class="hover:text-brand-gold transition flex items-center gap-1.5">🎬 الرئيسية</a>
+      <a href="#movies" class="hover:text-brand-gold transition flex items-center gap-1.5">🎞️ مكتبة العروض</a>
+      <a href="#live" class="hover:text-brand-gold transition flex items-center gap-1.5">🔴 البث المباشر</a>
+      <a href="#vip" class="hover:text-brand-gold transition flex items-center gap-1.5">🎟️ تصريح VIP</a>
+      <a href="#reviews" class="hover:text-brand-gold transition flex items-center gap-1.5">💬 مجلس المشاهدين</a>
+    </nav>
+
+    <!-- تذكرة الاشتراك وتفعيل باقة VIP -->
+    <div class="flex items-center gap-4">
+      <a href="#vip" class="bg-brand-gold hover:bg-amber-500 text-black font-extrabold text-xs px-5 py-2.5 rounded-xl transition duration-300 shadow-glow-gold flex items-center gap-2 transform hover:scale-105">
+        <span>باقة VIP الذهبية</span>
+        <span>⚡</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- ==================== الواجهة السينمائية المحدثة (Non-Stretch Premium Hero) ==================== -->
+  <section id="hero" class="relative min-h-[70vh] md:min-h-[80vh] flex items-center justify-center px-6 md:px-16 py-12 overflow-hidden border-b border-zinc-900/20">
+    <!-- خلفية تفاعلية ضبابية تمنع التشوه أو التمدد المزعج للبوستر -->
+    <div class="absolute inset-0 bg-cover bg-center filter blur-3xl brightness-[0.15] scale-110" style="background-image: url('https://img.youtube.com/vi/rSxqWAfiwLU/maxresdefault.jpg');"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-brand-pitch via-brand-pitch/80 to-transparent"></div>
+
+    <div class="relative z-10 max-w-7xl w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <!-- العمود الأيمن: تفاصيل العرض الحالي والأزرار التفاعلية -->
+      <div class="lg:col-span-7 space-y-6">
+        <div class="inline-flex items-center gap-2.5 px-3 py-1 bg-brand-gold/10 border border-brand-gold/30 rounded-full text-brand-gold text-[11px] font-black">
+          🚨 فيلم اليوم الأكثر طلباً ومتابعة
+        </div>
+        <h2 id="featured-title" class="text-3xl md:text-5xl lg:text-6xl font-black text-white leading-tight">
+          سفرة البحرين الكوميدية وصويلح
+        </h2>
+        <p class="text-xs md:text-sm text-brand-gold font-bold flex items-center gap-4 flex-wrap">
+          <span class="bg-amber-950/50 text-brand-gold px-3 py-1 rounded-lg border border-brand-gold/20">كوميدي / سفر بري</span>
+          <span class="text-stone-300">⏱️ موسم 2024</span>
+          <span class="text-yellow-400 flex items-center">⭐ 9.8/10</span>
+          <span class="bg-brand-red/20 text-brand-red px-2.5 py-1 rounded-lg text-[10px] font-bold">حلقة كاملة</span>
+        </p>
+        <p id="featured-desc" class="text-zinc-300 text-sm md:text-base leading-relaxed max-w-2xl">
+          مغامرة سينمائية كوميدية فريدة عبر الحدود يقطعها طاقم المعلاق داخل الجمس الأخضر التاريخي لمملكة البحرين الشقيقة ومواقف السباحة بالبحر وتفاصيل طريفة مع صويلح والشباب.
+        </p>
+        <div class="flex items-center gap-4 flex-wrap pt-2">
+          <button onclick="playMovieById(1)" class="bg-brand-gold hover:bg-amber-500 text-black font-black text-xs md:text-sm px-7 py-4 rounded-xl flex items-center gap-2.5 transition shadow-glow-gold transform hover:scale-105 duration-200">
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            تشغيل الحلقة في الكابينة
+          </button>
+          <a href="#movies" class="bg-zinc-900/80 hover:bg-zinc-800 text-stone-300 border border-zinc-800 font-bold text-xs md:text-sm px-6 py-4 rounded-xl transition">
+            Tصفح بقية الحلقات
+          </a>
+        </div>
+      </div>
+
+      <!-- العمود الأيسر: البوستر المخصص والمثالي (16:9) ذو الأبعاد الثابتة والفخمة لمنع التمدد -->
+      <div class="lg:col-span-5 flex justify-center">
+        <div class="relative w-full max-w-[440px] aspect-video md:aspect-[16/10] bg-zinc-900 rounded-3xl overflow-hidden border-2 border-zinc-800/80 shadow-2xl group transition-all duration-300 hover:border-brand-gold/50 hover:shadow-glow-gold">
+          <img id="featured-poster-img" src="https://img.youtube.com/vi/rSxqWAfiwLU/maxresdefault.jpg" alt="بوستر سفرة البحرين" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90">
+          <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent pointer-events-none"></div>
+          <span class="absolute bottom-4 right-4 bg-black/80 text-brand-gold text-[10px] font-black px-3 py-1.5 rounded-lg border border-zinc-800">
+            أبعاد البوستر القياسية 🍿
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== صالة العرض والمشغل الذكي (Cinema Player) ==================== -->
+  <section id="cinema-room" class="py-12 px-4 md:px-12 bg-gradient-to-b from-brand-pitch to-brand-charcoal relative">
+    <div id="ambient-bg" class="absolute left-1/2 top-1/3 -translate-x-1/2 w-[85%] h-[60%] rounded-full bg-amber-500/10 blur-[120px] transition-all duration-1000 ease-in-out ambient-glow pointer-events-none"></div>
+
+    <div id="cinema-container" class="relative z-50 max-w-5xl mx-auto transition-all duration-500">
+      <div class="text-center mb-8">
+        <h3 class="text-2xl md:text-4xl font-extrabold text-white flex items-center justify-center gap-3">
+          <span class="w-3 h-3 rounded-full bg-brand-gold"></span>
+          شاشة عرض المعلاق الذكية
+        </h3>
+        <p class="text-zinc-400 text-xs md:text-sm mt-2">اختر أي مغامرة أو رحلة من الأسفل لتشغيلها بشكل فوري وبجودة عالية</p>
+      </div>
+
+      <!-- إطار الشاشة التفاعلي الفاخر -->
+      <div class="bg-black/95 rounded-3xl border border-zinc-800/80 overflow-hidden shadow-2xl relative">
+        <div class="relative aspect-video bg-zinc-950 flex flex-col items-center justify-center overflow-hidden">
+          
+          <!-- مشغل الفيديو HTML5 للفيديوهات المباشرة MP4 -->
+          <video id="html5-video" class="absolute inset-0 w-full h-full object-contain hidden" playsinline></video>
+
+          <!-- مشغل اليوتيوب الرسمي الآمن -->
+          <iframe id="iframe-video" class="absolute inset-0 w-full h-full hidden" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+          <!-- الكانفاس التفاعلي للتأثيرات البصرية -->
+          <canvas id="cinema-canvas" class="absolute inset-0 w-full h-full opacity-60 pointer-events-none"></canvas>
+          <div id="cinema-canvas-overlay" class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent pointer-events-none"></div>
+
+          <!-- معلومات العرض الحالي في الزاوية -->
+          <div id="player-overlay" class="absolute top-4 right-4 bg-black/70 backdrop-blur-md px-3.5 py-1.5 rounded-lg border border-zinc-800 text-xs text-brand-gold font-bold flex items-center gap-2 z-20">
+            <span class="w-1.5 h-1.5 rounded-full bg-brand-red animate-ping"></span>
+            جاري فك تشفير السجل: <span id="current-playing-title" class="text-white">سفرة البحرين الكوميدية وصويلح</span>
+          </div>
+
+          <!-- زر التشغيل المركزي العملاق -->
+          <button id="central-play-btn" onclick="togglePlay()" class="relative z-20 w-20 h-20 bg-brand-gold text-black rounded-full flex items-center justify-center shadow-glow-gold transition-all duration-300 hover:scale-110 active:scale-95">
+            <svg id="central-play-icon" class="w-10 h-10 ml-1 fill-current" viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+            <svg id="central-pause-icon" class="w-10 h-10 hidden fill-current" viewBox="0 0 24 24">
+              <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+            </svg>
+          </button>
+
+          <!-- شريط الترجمة والملاحظات البرية -->
+          <div id="subtitles-container" class="absolute bottom-16 left-1/2 -translate-x-1/2 text-center w-[90%] pointer-events-none z-20 transition-all duration-300">
+            <p id="subtitles-text" class="inline-block bg-black/85 px-4 py-2 rounded-lg text-xs md:text-sm font-medium text-amber-300 tracking-wide border border-zinc-800">
+              منصة المعلاق ترحب بكم.. اختر أي مغامرة بالأسفل لبدء تشغيل السجل!
+            </p>
+          </div>
+        </div>
+
+        <!-- لوحة التحكم وتعديل زوايا المسرح وشريط التقدم المطور -->
+        <div id="custom-controls" class="bg-zinc-950 px-6 py-4 border-t border-zinc-900/60 flex flex-col gap-4">
+          
+          <!-- شريط التقدم التفاعلي والوقت الفعلي -->
+          <div class="flex items-center gap-4 text-xs text-zinc-400">
+            <span id="player-time-current">00:00</span>
+            <div id="progress-container" onclick="seekPlayer(event)" class="flex-1 h-1.5 bg-zinc-800 rounded-full cursor-pointer relative group">
+              <div id="player-progress-bar" class="w-0 h-full bg-gradient-to-r from-brand-gold to-amber-500 rounded-full relative">
+                <span class="absolute left-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+              </div>
+            </div>
+            <span id="player-time-total">02:30:00</span>
+          </div>
+
+          <div class="flex items-center justify-between flex-wrap gap-4">
+            <!-- التحكم بالصوت والتشغيل -->
+            <div class="flex items-center gap-4">
+              <button onclick="togglePlay()" class="text-zinc-300 hover:text-brand-gold transition">
+                <svg id="control-play-icon" class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                <svg id="control-pause-icon" class="w-6 h-6 hidden fill-current" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+              </button>
+              
+              <!-- التحكم بالصوت ومستوى الصوت -->
+              <div class="flex items-center gap-2 group/volume">
+                <button onclick="toggleMute()" class="text-zinc-300 hover:text-brand-gold transition">
+                  <svg id="volume-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/>
+                  </svg>
+                </button>
+                <input id="volume-slider" type="range" min="0" max="100" value="80" oninput="setVolume(this.value)" class="w-16 md:w-24 h-1 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-amber-500">
+              </div>
+            </div>
+
+            <!-- ميزات التحكم الاحترافية والترجمة -->
+            <div class="flex items-center gap-3 flex-wrap">
+              <!-- إطفاء الأضواء -->
+              <button onclick="toggleLightsOut()" id="lights-out-btn" class="flex items-center gap-1.5 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-stone-300 px-3 py-1.5 rounded-lg text-xs font-bold transition">
+                💡 <span id="lights-out-status">إطفاء الأضواء</span>
+              </button>
+
+              <!-- وضع المسرح العريض -->
+              <button onclick="toggleTheaterMode()" id="theater-btn" class="flex items-center gap-1.5 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-stone-300 px-3 py-1.5 rounded-lg text-xs font-bold transition">
+                🖥️ <span id="theater-status">وضع المسرح</span>
+              </button>
+
+              <!-- إضاءة محيطية خلفية -->
+              <button onclick="toggleAmbient()" id="ambient-btn" class="flex items-center gap-1.5 bg-brand-gold/10 hover:bg-brand-gold/20 border border-brand-gold/30 text-brand-gold px-3 py-1.5 rounded-lg text-xs font-bold transition">
+                <span class="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse"></span>
+                إضاءة محيطية: <span id="ambient-status">نشطة</span>
+              </button>
+
+              <!-- قائمة تبديل الترجمة المتوافقة برمجياً -->
+              <select id="subtitle-select" onchange="changeSubtitles(this.value)" class="bg-zinc-900 border border-zinc-800 text-zinc-300 rounded-lg text-xs px-2.5 py-1.5 focus:outline-none focus:ring-1 focus:ring-brand-gold">
+                <option value="ar">العربية</option>
+                <option value="en">English</option>
+                <option value="off">إيقاف الترجمة</option>
+              </select>
+
+              <!-- جودة العرض -->
+              <span class="text-[10px] bg-zinc-900 border border-zinc-800 text-zinc-400 px-2.5 py-1.5 rounded-lg font-bold">1080P HD QUALITY</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== مكتبة عروض وقناة المعلاق الـ 16 (The Grid Library) ==================== -->
+  <section id="movies" class="py-16 px-6 md:px-16 bg-brand-pitch relative">
+    <div class="max-w-7xl mx-auto">
+      
+      <!-- الرأس وتصفية السجلات -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 border-b border-zinc-900/40 pb-8">
+        <div>
+          <h3 class="text-2xl md:text-3xl font-black text-white flex items-center gap-2">
+            <span class="w-2.5 h-2.5 bg-brand-gold rounded-sm"></span>
+            أرشيف مغامرات المعلاق الـ 16 الكاملة
+          </h3>
+          <p class="text-zinc-500 text-xs mt-2">تصفح السجلات المطابقة والمحدثة بدقة مع روابطها الرسمية من قناة يوتيوب الأصلية</p>
+        </div>
+
+        <!-- محرك البحث السريع -->
+        <div class="relative max-w-sm w-full">
+          <input id="search-input" onkeyup="filterMovies()" type="text" placeholder="ابحث باسم السجل أو المغامرة..." class="w-full bg-zinc-950 border border-zinc-900 text-xs text-stone-200 px-10 py-3.5 rounded-xl focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold transition duration-200">
+          <span class="absolute right-3.5 top-1/2 -translate-y-1/2 text-zinc-500">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          </span>
+        </div>
+      </div>
+
+      <!-- فلاتر وتصنيفات سريعة مع المفضلات -->
+      <div class="flex items-center gap-3 overflow-x-auto pb-4 mb-8 text-xs scrollbar-none">
+        <button id="cat-all" onclick="setCategory('الكل')" class="cat-btn bg-brand-gold text-black font-bold px-4 py-2.5 rounded-xl transition shrink-0">الكل</button>
+        <button onclick="setCategory('كوميدي')" class="cat-btn bg-zinc-900 hover:bg-zinc-800 text-zinc-400 font-bold px-4 py-2.5 rounded-xl transition shrink-0">كوميدي</button>
+        <button onclick="setCategory('أكشن')" class="cat-btn bg-zinc-900 hover:bg-zinc-800 text-zinc-400 font-bold px-4 py-2.5 rounded-xl transition shrink-0">أكشن وحركة</button>
+        <button onclick="setCategory('دراما')" class="cat-btn bg-zinc-900 hover:bg-zinc-800 text-zinc-400 font-bold px-4 py-2.5 rounded-xl transition shrink-0">دراما وقصص</button>
+        <button onclick="setCategory('رعب')" class="cat-btn bg-zinc-900 hover:bg-zinc-800 text-zinc-400 font-bold px-4 py-2.5 rounded-xl transition shrink-0">رعب وإثارة</button>
+        <button onclick="setCategory('مفضلتي')" class="cat-btn bg-zinc-900 hover:bg-zinc-800 text-red-400 font-bold px-4 py-2.5 rounded-xl transition shrink-0 flex items-center gap-1">
+          ❤️ مفضلتي الشخصية (<span id="favorites-count">0</span>)
+        </button>
+      </div>
+
+      <!-- شبكة سجلات المغامرات (The Grid) -->
+      <div id="movies-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
+        <!-- يتم رندرتها عبر الجافا سكريبت لتجنب أخطاء السنتاكس تماماً ومطابقة العناوين للفيديوهات -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== جدول البث المباشر (Live Broadcast & Schedule) ==================== -->
+  <section id="live" class="py-16 px-6 md:px-16 bg-brand-charcoal relative border-y border-zinc-900/50">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <!-- شاشة البث الصغير -->
+      <div class="lg:col-span-7 bg-black rounded-3xl p-4 border border-zinc-800/80 shadow-2xl relative overflow-hidden group">
+        <div class="absolute inset-0 bg-gradient-to-r from-red-600/5 to-transparent pointer-events-none"></div>
+        <div class="aspect-video bg-zinc-950 rounded-2xl overflow-hidden relative flex flex-col justify-between p-4">
+          <div class="absolute inset-0 bg-cover bg-center filter saturate-150 brightness-75" style="background-image: url('https://img.youtube.com/vi/Czxi3bG2__8/hqdefault.jpg');"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+
+          <div class="relative z-10 flex items-center justify-between">
+            <span class="bg-brand-red text-white text-xs font-bold px-3 py-1.5 rounded-lg flex items-center gap-1.5 shadow-glow-red animate-pulse">
+              <span class="w-1.5 h-1.5 rounded-full bg-white"></span>
+              بث مباشر على منصتنا
+            </span>
+            <span class="bg-black/60 backdrop-blur-md text-white text-[11px] px-2.5 py-1 rounded border border-zinc-800">
+              👁️ 15.4K يشاهدون الآن
+            </span>
+          </div>
+
+          <div class="relative z-10 text-right">
+            <span class="text-brand-gold text-xs font-bold block mb-1">يعرض الآن على الشاشة</span>
+            <h4 class="text-xl md:text-2xl font-black text-white">فيلم ليلة زواج الأنس والجن</h4>
+            <p class="text-xs text-zinc-300 mt-1 max-w-md">أقوى اسكتشات المعلاق الكوميدية والاجتماعية في مواجهة مشاكل الشباب مع شروط الزواج.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- مواعيد بث اليوم -->
+      <div class="lg:col-span-5">
+        <span class="text-brand-gold text-xs font-bold tracking-widest uppercase block mb-2">قناة المعلاق التلفزيونية</span>
+        <h3 class="text-2xl md:text-4xl font-extrabold text-white mb-6">جدول بث اليوم التفاعلي</h3>
+        <p class="text-zinc-400 text-sm mb-8">تابع البث الحصري لقناة المعلاق طوال اليوم، لا تفوت أياً من مغامرات الجمس والرحلات المميزة التالية:</p>
+
+        <div class="space-y-4">
+          <div class="bg-black/40 border border-zinc-900/60 p-4 rounded-2xl flex items-center justify-between gap-4">
+            <div class="flex items-center gap-3.5">
+              <span class="bg-zinc-900 border border-zinc-800 text-brand-gold font-bold text-xs p-3.5 rounded-xl shrink-0">16:00</span>
+              <div>
+                <h5 class="text-sm font-bold text-white">تشليح السيارات (فيلم قصير)</h5>
+                <span class="text-xs text-zinc-500">أكشن وإثارة / مغامرات الورشة</span>
+              </div>
+            </div>
+            <span class="text-[10px] bg-zinc-900 text-zinc-400 px-2.5 py-1 rounded-full">انتهى العرض</span>
+          </div>
+
+          <div class="bg-brand-red/5 border border-brand-red/30 p-4 rounded-2xl flex items-center justify-between gap-4 relative overflow-hidden">
+            <div class="absolute left-0 top-0 bottom-0 w-1 bg-brand-red"></div>
+            <div class="flex items-center gap-3.5">
+              <span class="bg-brand-red/10 border border-brand-red/20 text-brand-red font-bold text-xs p-3.5 rounded-xl shrink-0">19:30</span>
+              <div>
+                <h5 class="text-sm font-bold text-white flex items-center gap-2">
+                  ليلة زواج الأنس والجن
+                  <span class="w-1.5 h-1.5 rounded-full bg-brand-red animate-ping"></span>
+                </h5>
+                <span class="text-xs text-brand-red/80">يعرض الآن مباشر على موقع المعلاق</span>
+              </div>
+            </div>
+            <span class="text-[10px] bg-brand-red text-white px-2.5 py-1 rounded-full font-bold shadow-glow-red animate-pulse">جاري البث</span>
+          </div>
+
+          <div class="bg-black/40 border border-zinc-900/60 p-4 rounded-2xl flex items-center justify-between gap-4">
+            <div class="flex items-center gap-3.5">
+              <span class="bg-zinc-900 border border-zinc-800 text-brand-gold font-bold text-xs p-3.5 rounded-xl shrink-0">22:00</span>
+              <div>
+                <h5 class="text-sm font-bold text-white">الشاهي الملغم وكواليس الورشة</h5>
+                <span class="text-xs text-zinc-500">دراما وكوميديا سوداء</span>
+              </div>
+            </div>
+            <span class="text-[10px] bg-zinc-900 text-zinc-400 px-2.5 py-1 rounded-full">يبدأ قريباً</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== باقات الاشتراك VIP (VIP Pricing) ==================== -->
+  <section id="vip" class="py-20 px-6 md:px-16 bg-brand-pitch relative">
+    <div class="max-w-7xl mx-auto text-center mb-16">
+      <span class="text-brand-gold text-xs font-bold tracking-widest uppercase block mb-3">اشتراكات حصرية ومميزة</span>
+      <h3 class="text-3xl md:text-5xl font-black text-white">اختر باقة المعلاق VIP المناسبة لك</h3>
+      <p class="text-zinc-400 text-sm md:text-base mt-3 max-w-xl mx-auto">احصل على إمكانية الوصول الكامل لجميع الأفلام والمسلسلات الحصرية بجودة فور كيه وبدون إعلانات مزعجة.</p>
+    </div>
+
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+      
+      <div class="bg-zinc-950 border border-zinc-900 hover:border-zinc-800 rounded-3xl p-8 transition-all duration-300 transform hover:-translate-y-2 flex flex-col justify-between">
+        <div>
+          <h4 class="text-lg font-bold text-gray-400 mb-2">الباقة الفضية</h4>
+          <p class="text-4xl font-extrabold text-white mb-6">19 <span class="text-xs text-zinc-500">ريال / شهرياً</span></p>
+          <ul class="space-y-3.5 text-sm text-zinc-300 border-t border-zinc-900 pt-6">
+            <li class="flex items-center gap-2">✔️ جودة عرض Full HD</li>
+            <li class="flex items-center gap-2">✔️ شاشة واحدة في نفس الوقت</li>
+            <li class="flex items-center gap-2">❌ يتضمن بعض الإعلانات الخفيفة</li>
+            <li class="text-zinc-600 flex items-center gap-2">❌ الوصول للأفلام الحصرية مجاناً</li>
+          </ul>
+        </div>
+        <button onclick="openPaymentModal('الباقة الفضية', 19)" class="w-full mt-8 bg-zinc-900 hover:bg-zinc-800 text-white font-bold py-3.5 rounded-2xl transition">
+          ابدأ باشتراكك الأساسي
+        </button>
+      </div>
+
+      <div class="bg-zinc-900 border-2 border-brand-gold rounded-3xl p-8 transition-all duration-300 transform hover:-translate-y-2 flex flex-col justify-between relative shadow-glow-gold">
+        <span class="absolute top-0 right-1/2 translate-x-1/2 -translate-y-1/2 bg-brand-gold text-black text-[11px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest shadow">الباقة الأكثر مبيعاً</span>
+        <div>
+          <h4 class="text-xl font-bold text-brand-gold mb-2">باقة المعلاق VIP</h4>
+          <p class="text-5xl font-extrabold text-white mb-6">39 <span class="text-xs text-zinc-400">ريال / شهرياً</span></p>
+          <ul class="space-y-3.5 text-sm text-gray-200 border-t border-zinc-800 pt-6">
+            <li class="flex items-center gap-2">✔️ جودة فائقة 4K Ultra HD</li>
+            <li class="flex items-center gap-2">✔️ مشاهدة حتى 3 شاشات معاً</li>
+            <li class="flex items-center gap-2">✔️ خالي تماماً من الإعلانات</li>
+            <li class="flex items-center gap-2">✔️ مشاهدة العروض الحصرية ومسرحيات المعلاق</li>
+          </ul>
+        </div>
+        <button onclick="openPaymentModal('باقة المعلاق VIP', 39)" class="w-full mt-8 bg-gradient-to-r from-brand-gold to-amber-600 hover:from-amber-600 hover:to-brand-gold text-black font-black py-3.5 rounded-2xl transition shadow-glow-gold">
+          اشترك الآن في الباقة الذهبية
+        </button>
+      </div>
+
+      <div class="bg-zinc-950 border border-zinc-900 hover:border-zinc-800 rounded-3xl p-8 transition-all duration-300 transform hover:-translate-y-2 flex flex-col justify-between">
+        <div>
+          <h4 class="text-lg font-bold text-gray-400 mb-2">الباقة البلاتينية العائلية</h4>
+          <p class="text-4xl font-extrabold text-white mb-6">59 <span class="text-xs text-zinc-500">ريال / شهرياً</span></p>
+          <ul class="space-y-3.5 text-sm text-zinc-300 border-t border-zinc-900 pt-6">
+            <li class="flex items-center gap-2">✔️ جودة فائقة 4K Ultra HD + HDR</li>
+            <li class="flex items-center gap-2">✔️ مشاهدة حتى 5 شاشات معاً</li>
+            <li class="flex items-center gap-2">✔️ خالي تماماً من الإعلانات</li>
+            <li class="flex items-center gap-2">✔️ إمكانية تنزيل الأفلام للمشاهدة بدون إنترنت</li>
+          </ul>
+        </div>
+        <button onclick="openPaymentModal('الباقة البلاتينية العائلية', 59)" class="w-full mt-8 bg-zinc-900 hover:bg-zinc-800 text-white font-bold py-3.5 rounded-2xl transition">
+          ابدأ باشتراك عائلتك
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== ركن الآراء والتقييمات التفاعلي (Reviews Section) ==================== -->
+  <section id="reviews" class="py-16 px-6 md:px-16 bg-brand-charcoal relative">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        
+        <!-- استمارة كتابة مراجعة -->
+        <div class="lg:col-span-5 bg-black/50 p-8 rounded-3xl border border-zinc-900">
+          <span class="text-brand-gold text-xs font-bold block mb-2">أبدي رأيك</span>
+          <h3 class="text-2xl md:text-3xl font-extrabold text-white mb-4">اكتب مراجعتك وتقييمك للأفلام</h3>
+          <p class="text-zinc-400 text-xs md:text-sm mb-6">يسعدنا جداً سماع رأيك حول أداء صالة العرض والمحتوى الذي تقدمه قناة المعلاق.</p>
+
+          <form id="review-form" onsubmit="addReview(event)" class="space-y-4">
+            <div>
+              <label class="block text-xs text-zinc-400 mb-1.5">الاسم الكريم</label>
+              <input type="text" id="reviewer-name" required placeholder="أدخل اسمك هنا" class="w-full bg-zinc-950 border border-zinc-800 text-sm text-white px-4 py-3 rounded-xl focus:outline-none focus:border-brand-gold">
+            </div>
+
+            <!-- تقييم النجوم التفاعلي -->
+            <div>
+              <label class="block text-xs text-zinc-400 mb-1.5">تقييمك لقناة المعلاق</label>
+              <div class="flex items-center gap-1.5" id="star-rating-container">
+                <button type="button" onclick="setRating(1)" class="star-btn text-zinc-600 hover:text-brand-gold transition duration-150"><svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></button>
+                <button type="button" onclick="setRating(2)" class="star-btn text-zinc-600 hover:text-brand-gold transition duration-150"><svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></button>
+                <button type="button" onclick="setRating(3)" class="star-btn text-zinc-600 hover:text-brand-gold transition duration-150"><svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></button>
+                <button type="button" onclick="setRating(4)" class="star-btn text-zinc-600 hover:text-brand-gold transition duration-150"><svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></button>
+                <button type="button" onclick="setRating(5)" class="star-btn text-zinc-600 hover:text-brand-gold transition duration-150"><svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></button>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs text-zinc-400 mb-1.5">التعليق والملاحظات</label>
+              <textarea id="reviewer-message" required rows="4" placeholder="شاركنا تجربتك في مشاهدة الأفلام على القناة..." class="w-full bg-zinc-950 border border-zinc-800 text-sm text-white px-4 py-3 rounded-xl focus:outline-none focus:border-brand-gold resize-none"></textarea>
+            </div>
+
+            <button type="submit" class="w-full bg-brand-gold hover:bg-amber-600 text-black font-bold py-3 rounded-xl transition duration-300 shadow-glow-gold">
+              إرسال مراجعتك الفورية
+            </button>
+          </form>
+        </div>
+
+        <!-- قائمة المراجعات والآراء -->
+        <div class="lg:col-span-7 flex flex-col justify-between">
+          <div>
+            <h4 class="text-xl font-bold text-white mb-6">آراء المشاهدين الحالية</h4>
+            <div id="reviews-list" class="space-y-4">
+              <!-- المراجعات الافتراضية والجديدة تضاف هنا -->
+            </div>
+          </div>
+          <p class="text-xs text-zinc-500 mt-6 text-center lg:text-right">يتم تحديث قائمة التعليقات دورياً وهي تعبر عن مشاهدي قناة المعلاق الحقيقيين.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== تذييل الصفحة الفاخر (Footer) ==================== -->
+  <footer class="bg-black text-zinc-400 py-12 px-6 border-t border-zinc-900">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <div class="bg-brand-gold p-2 rounded-lg text-black font-bold">
+          🍿
+        </div>
+        <div>
+          <span class="text-white font-bold block text-lg font-['Cairo']">قناة المعلاق للأفلام</span>
+          <span class="text-[10px] tracking-widest text-brand-gold font-bold uppercase block">MaalaqFilm • السينما بين يديك</span>
+        </div>
+      </div>
+
+      <p class="text-xs text-zinc-600 text-center md:text-right">
+        جميع الحقوق محفوظة © 2026 لقناة المعلاق للأفلام. تم التطوير والبرمجة بكل إتقان واحترافية.
+      </p>
+
+      <div class="flex items-center gap-4">
+        <span class="text-xs font-bold text-zinc-500">تابعونا:</span>
+        <a href="https://www.youtube.com/@m3laq" target="_blank" class="hover:text-brand-gold transition">YouTube</a>
+        <a href="#" class="hover:text-brand-gold transition">Twitter/X</a>
+        <a href="#" class="hover:text-brand-gold transition">Instagram</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== نافذة الدفع والاشتراك التجريبي (Payment Modal) ==================== -->
+  <div id="payment-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 hidden transition-opacity duration-300 opacity-0">
+    <div class="bg-zinc-950 border border-zinc-800 rounded-3xl max-w-md w-full p-6 relative overflow-hidden transition-all duration-300 scale-95">
+      <button onclick="closePaymentModal()" class="absolute top-4 left-4 text-zinc-500 hover:text-white transition">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+
+      <div class="text-center mb-6">
+        <span class="bg-brand-gold/10 text-brand-gold text-xs font-bold px-3 py-1 rounded-full border border-brand-gold/20 mb-2 inline-block">بوابة الدفع الآمنة لموقع المعلاق</span>
+        <h4 class="text-xl font-bold text-white">إكمال اشتراك <span id="modal-package-name" class="text-brand-gold">باقة VIP</span></h4>
+        <p class="text-zinc-400 text-xs mt-1">المبلغ المطلوب دفعه شهرياً: <span id="modal-package-price" class="font-bold text-white">39</span> ريال سعودي</p>
+      </div>
+
+      <form id="payment-form" onsubmit="processPayment(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs text-zinc-400 mb-1">اسم صاحب البطاقة</label>
+          <input type="text" required placeholder="محمد أحمد" class="w-full bg-zinc-900 border border-zinc-800 text-sm text-white px-4 py-3 rounded-xl focus:outline-none focus:border-brand-gold">
+        </div>
+
+        <div>
+          <label class="block text-xs text-zinc-400 mb-1">رقم بطاقة الائتمان</label>
+          <div class="relative">
+            <input type="text" required pattern="\d{16}" maxlength="16" placeholder="4000 1234 5678 9010" class="w-full bg-zinc-900 border border-zinc-800 text-sm text-white px-4 py-3 rounded-xl focus:outline-none focus:border-brand-gold">
+            <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-lg">💳</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs text-zinc-400 mb-1">تاريخ الانتهاء</label>
+            <input type="text" required placeholder="MM/YY" maxlength="5" class="w-full bg-zinc-900 border border-zinc-800 text-sm text-white px-4 py-3 rounded-xl focus:outline-none focus:border-brand-gold text-center">
+          </div>
+          <div>
+            <label class="block text-xs text-zinc-400 mb-1">الرمز السري (CVV)</label>
+            <input type="password" required pattern="\d{3}" maxlength="3" placeholder="***" class="w-full bg-zinc-900 border border-zinc-800 text-sm text-white px-4 py-3 rounded-xl focus:outline-none focus:border-brand-gold text-center">
+          </div>
+        </div>
+
+        <button type="submit" class="w-full bg-gradient-to-r from-brand-gold to-amber-600 hover:from-amber-600 hover:to-brand-gold text-black font-black py-4 rounded-xl transition duration-300 shadow-glow-gold mt-6 flex items-center justify-center gap-2">
+          <span>تفعيل اشتراكي الفوري</span>
+          <span>🛡️</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== نافذة نجاح العملية (Toast) ==================== -->
+  <div id="success-toast" class="fixed bottom-6 right-6 z-[60] bg-zinc-900 border-2 border-brand-gold text-white p-5 rounded-2xl shadow-2xl max-w-sm hidden transition-transform transform translate-y-10">
+    <div class="flex items-start gap-3">
+      <span class="bg-brand-gold text-black p-1.5 rounded-full text-sm">🎉</span>
+      <div>
+        <h5 class="font-bold text-sm text-brand-gold" id="toast-title">تمت العملية بنجاح!</h5>
+        <p class="text-xs text-zinc-300 mt-1" id="toast-desc">شكراً لك لكونك جزءاً من مشاهدي قناة المعلاق للأفلام.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== نصوص السكريبت والتحكم البرمجي التفاعلي ==================== -->
+  <script>
+    // --- قاعدة بيانات قناة المعلاق للأفلام الـ 16 - مطابقة 100% مع روابط يوتيوب الأصلية والحقيقية ---
+    const allMovies = [
+      {
+        id: 1,
+        title: `رحلة البحرين الكارثية مع صويلح`,
+        category: `كوميدي`,
+        year: 2024,
+        rating: 9.8,
+        synopsis: `مغامرة كوميدية فريدة عبر الحدود يقطعها طاقم المعلاق داخل الجمس الأخضر التاريخي إلى مملكة البحرين الشقيقة ومواقف طريفة تحدث مع صويلح في البحر.`,
+        cover: `https://img.youtube.com/vi/rSxqWAfiwLU/maxresdefault.jpg`,
+        theme: `from-amber-600 to-orange-950`,
+        videoUrl: `https://www.youtube.com/watch?v=rSxqWAfiwLU`
+      },
+      {
+        id: 2,
+        title: `مسلسل المعلاق الكوميدي - حلقة العجينة`,
+        category: `كوميدي`,
+        year: 2024,
+        rating: 9.5,
+        synopsis: `الحلقة الأولى من سلسلة المعلاق الكوميدية الشهيرة بعنوان العجينة، ومواقف مضحكة ومشاكل الشباب داخل الفصل مع الأستاذ بطابع ساخر وعفوي.`,
+        cover: `https://img.youtube.com/vi/alMG_bEjOsQ/hqdefault.jpg`,
+        theme: `from-yellow-600 to-amber-900`,
+        videoUrl: `https://www.youtube.com/watch?v=alMG_bEjOsQ`
+      },
+      {
+        id: 3,
+        title: `فيلم ليلة زواج الأنس والجن`,
+        category: `كوميدي`,
+        year: 2024,
+        rating: 9.6,
+        synopsis: `فيلم كوميدي اجتماعي ساخر يتناول معاناة الشباب مع المهور الصعبة، فيهرب بطلنا خالد ليتزوج من جنية دون شروط تعجيزية لتحدث كوارث ليلة العرس!`,
+        cover: `https://img.youtube.com/vi/Czxi3bG2__8/hqdefault.jpg`,
+        theme: `from-purple-900 to-zinc-950`,
+        videoUrl: `https://www.youtube.com/watch?v=Czxi3bG2__8`
+      },
+      {
+        id: 4,
+        title: `سلسلة المعلاق - تشليح السيارات`,
+        category: `أكشن`,
+        year: 2024,
+        rating: 9.4,
+        synopsis: `مغامرة سينمائية ممتعة داخل كواليس ورشة تشليح السيارات، مع أحداث مليئة بالإثارة والأكشن الكوميدي السوداوي الخاص بقروب المعلاق.`,
+        cover: `https://img.youtube.com/vi/fgzhpHSI-ow/hqdefault.jpg`,
+        theme: `from-emerald-700 to-zinc-950`,
+        videoUrl: `https://www.youtube.com/watch?v=fgzhpHSI-ow`
+      },
+      {
+        id: 5,
+        title: `فيلم الشاهي الملغم - كواليس الورشة`,
+        category: `دراما`,
+        year: 2024,
+        rating: 9.3,
+        synopsis: `بين ضجيج المفكات ورائحة الزيوت في الورشة، كان هناك شيء آخر يختمر ويوصف بالملغم! مغامرة كوميدية سوداء شيقة تكشف سر التسمية.`,
+        cover: `https://img.youtube.com/vi/0asZqqAakOI/hqdefault.jpg`,
+        theme: `from-red-800 to-stone-950`,
+        videoUrl: `https://www.youtube.com/watch?v=0asZqqAakOI`
+      },
+      {
+        id: 6,
+        title: `نويصر يبي يطلب فطور في الفصل`,
+        category: `كوميدي`,
+        year: 2024,
+        rating: 9.1,
+        synopsis: `نويصر متأخر كالعادة عن الحصة، وبدلاً من الاعتذار يقرر فتح منيو فطور شعبي والطلب داخل الفصل في مواجهة كوميدية هزلية مع الأستاذ.`,
+        cover: `https://img.youtube.com/vi/k_wlNRD8VWQ/hqdefault.jpg`,
+        theme: `from-orange-700 to-zinc-900`,
+        videoUrl: `https://www.youtube.com/watch?v=k_wlNRD8VWQ`
+      },
+      {
+        id: 7,
+        title: `مغامرة سوق الغنم الكوميدية`,
+        category: `كوميدي`,
+        year: 2024,
+        rating: 9.2,
+        synopsis: `في هذا السكتش الكوميدي، نأخذكم في جولة كوميدية مجنونة داخل سوق الأغنام لنتعرف على مواقف مضحكة تواجه أبطالنا أثناء البيع والشراء.`,
+        cover: `https://img.youtube.com/vi/13hlsZ7ibuM/hqdefault.jpg`,
+        theme: `from-amber-700 to-neutral-950`,
+        videoUrl: `https://www.youtube.com/watch?v=13hlsZ7ibuM`
+      },
+      {
+        id: 8,
+        title: `المصارعة الحرة في المزرعة الكبرى`,
+        category: `أكشن`,
+        year: 2024,
+        rating: 9.5,
+        synopsis: `مواجهات حاسمة لقروب المعلاق بأسلوب حلبات المصارعة الحرة ولكن بنكهة ريفية سعودية وسط النخيل، حيث يلتقي الأكشن بالضحك اللامتناهي.`,
+        cover: `https://img.youtube.com/vi/_NyDl7M-8UI/hqdefault.jpg`,
+        theme: `from-emerald-800 to-stone-900`,
+        videoUrl: `https://www.youtube.com/watch?v=_NyDl7M-8UI`
+      },
+      {
+        id: 9,
+        title: `الصقر دحيم ورحلة الخط السريع المجهول`,
+        category: `أكشن`,
+        year: 2024,
+        rating: 9.4,
+        synopsis: `نرافق بطلنا دحيم في مغامرة غير مألوفة وسريعة على خطوط السفر الطويلة، عمل سينمائي فريد يجمع بين الإثارة البصرية وروح الكشتة والبر.`,
+        cover: `https://img.youtube.com/vi/aFGotTt0ack/hqdefault.jpg`,
+        theme: `from-amber-800 to-zinc-950`,
+        videoUrl: `https://www.youtube.com/watch?v=aFGotTt0ack`
+      },
+      {
+        id: 10,
+        title: `فيلم الرعب والتشويق - السحر الأسود`,
+        category: `رعب`,
+        year: 2024,
+        rating: 9.0,
+        synopsis: `غموض وإثارة ممزوجة بلمسة المعلاق الكوميدية السوداء، ندخل في عالم الطقوس الغامضة والمواقف المرعبة التي تواجه الربع في منتصف الليل.`,
+        cover: `https://img.youtube.com/vi/HhSOpZMge1s/hqdefault.jpg`,
+        theme: `from-indigo-950 to-black`,
+        videoUrl: `https://www.youtube.com/watch?v=HhSOpZMge1s`
+      },
+      {
+        id: 11,
+        title: `طفرانين ومسافرين - مغامرة بدون ريال`,
+        category: `دراما`,
+        year: 2024,
+        rating: 9.3,
+        synopsis: `صراع البقاء وكيفية تدبر أمور السفر الترفيهي على شاطئ البحر بمحفظة فارغة تماماً ومواقف طريفة وواقعية يمر بها الربع طوال الطريق.`,
+        cover: `https://img.youtube.com/vi/g4R7sNwBRgQ/hqdefault.jpg`,
+        theme: `from-sky-850 to-zinc-950`,
+        videoUrl: `https://www.youtube.com/watch?v=g4R7sNwBRgQ`
+      },
+      {
+        id: 12,
+        title: `مسلسل المعلاق - أصعب 50 ريال في حياتي`,
+        category: `دراما`,
+        year: 2024,
+        rating: 9.4,
+        synopsis: `عمل كوميدي اجتماعي ساخر يناقش التدخلات الزائدة في شؤون الآخرين من خلال حكاية الحصول على خمسين ريال ومواقفها المحرجة الطريفة.`,
+        cover: `https://img.youtube.com/vi/nQbsqWTpdqE/hqdefault.jpg`,
+        theme: `from-slate-800 to-stone-950`,
+        videoUrl: `https://www.youtube.com/watch?v=nQbsqWTpdqE`
+      },
+      {
+        id: 13,
+        title: `البودي جارد المعلاق - الحلقة 17`,
+        category: `أكشن`,
+        year: 2024,
+        rating: 9.1,
+        synopsis: `سلسلة حماية ومواجهات غير متوقعة لقروب المعلاق، تتصاعد الإثارة ويدخل البودي جارد في تحديات كوميدية حماسية للسيطرة على الأوضاع.`,
+        cover: `https://img.youtube.com/vi/rMfKcx3SN-k/hqdefault.jpg`,
+        theme: `from-zinc-900 to-black`,
+        videoUrl: `https://www.youtube.com/watch?v=rMfKcx3SN-k`
+      },
+      {
+        id: 14,
+        title: `فيلم مهايطي الكشتة والصحراء القصير`,
+        category: `كوميدي`,
+        year: 2024,
+        rating: 9.6,
+        synopsis: `قصة المهايطي الكوميدية الذي لا يتوقف عن التباهي بشجاعته ومهاراته أثناء كشتة مع أصدقائه بالبر حتى يقع في موقف يختبر هياطه بالواقع!`,
+        cover: `https://img.youtube.com/vi/Z_3-1SJyXY0/hqdefault.jpg`,
+        theme: `from-emerald-900 to-stone-950`,
+        videoUrl: `https://www.youtube.com/watch?v=Z_3-1SJyXY0`
+      },
+      {
+        id: 15,
+        title: `رحلة دبي والمواقف الكوميدية الدولية`,
+        category: `كوميدي`,
+        year: 2024,
+        rating: 9.5,
+        synopsis: `توثيق لأبرز المحطات في طريق السفر الطويل للجمس الأخضر من الرياض إلى دبي والمواقف الطريفة والمفارقات الكوميدية للقروب بالرحلة.`,
+        cover: `https://img.youtube.com/vi/LrjTxZ_Jp1w/hqdefault.jpg`,
+        theme: `from-indigo-800 to-slate-950`,
+        videoUrl: `https://www.youtube.com/watch?v=LrjTxZ_Jp1w`
+      },
+      {
+        id: 16,
+        title: `سفرة قطر ومغامرة الجمس التاريخي`,
+        category: `دراما`,
+        year: 2024,
+        rating: 9.2,
+        synopsis: `أجمل اللقطات والمواقف أثناء زيارة دولة قطر الشقيقة والتقاط تفاصيل مبهجة برعاية الجمس البطل وضحكات قروب المعلاق المتواصلة.`,
+        cover: `https://img.youtube.com/vi/mfXDgjD3hbU/hqdefault.jpg`,
+        theme: `from-rose-950 to-stone-950`,
+        videoUrl: `https://www.youtube.com/watch?v=mfXDgjD3hbU`
+      }
+    ];
+
+    const initialReviews = [
+      { name: "أبو شجاع الشمري", rating: 5, msg: "تحديث الخطوط وتصميم شاهد الفاخر صراحة نقل الموقع لمستوى عالمي ومحترف، والمقاطع الحين متطابقة 100%! شغل جبار يعافيكم." },
+      { name: "فيصل الحربي", rating: 5, msg: "صالح وصويلح والجمس الأخضر هم نكهة الكشتات في الخليج، والموقع مرتب ومنظم جداً لدرجة ما تمل من التصفح." },
+      { name: "سلطان العتيبي", rating: 4, msg: "أفضل قناة مغامرات في الخليج بلا منازع. التعديلات في الوصف ومطابقة الفيديوهات وسهولة تصفح سجلات الرحلة جعل الموقع مرجعي الحقيقي." }
+    ];
+
+    let activeCategory = "الكل";
+    let activeRating = 5;
+    let isPlaying = false;
+    let isMuted = false;
+    let isAmbientOn = true;
+    let isLightsOut = false;
+    let isTheaterMode = false;
+    let canvasInterval = null;
+    let currentMovieType = 'simulation'; 
+    let customPlayTime = 0; 
+    let favoriteMovies = []; 
+
+    let html5Video, iframeVideo, cinemaCanvas, subtitlesContainer, controlsContainer;
+
+    // دالة لاستخراج معرف فيديو يوتيوب وتحويله لرابط تضمين ذكي
+    function getYouTubeEmbedUrl(url, isAutoplay = true) {
+      if (!url) return '';
+      let videoId = '';
+      if (url.includes('watch?v=')) {
+        const parts = url.split('watch?v=');
+        if (parts.length > 1) {
+          videoId = parts[1].split('&')[0];
+        }
+      } else if (url.includes('youtu.be/')) {
+        const parts = url.split('youtu.be/');
+        if (parts.length > 1) {
+          videoId = parts[1].split('?')[0].split('&')[0];
+        }
+      } else if (url.includes('embed/')) {
+        const parts = url.split('embed/');
+        if (parts.length > 1) {
+          videoId = parts[1].split('?')[0].split('&')[0];
+        }
+      }
+      
+      if (videoId) {
+        return `https://www.youtube.com/embed/${videoId}?autoplay=${isAutoplay ? 1 : 0}&rel=0&enablejsapi=1`;
+      }
+      return url;
+    }
+
+    window.onload = function() {
+      html5Video = document.getElementById('html5-video');
+      iframeVideo = document.getElementById('iframe-video');
+      cinemaCanvas = document.getElementById('cinema-canvas');
+      subtitlesContainer = document.getElementById('subtitles-container');
+      controlsContainer = document.getElementById('custom-controls');
+
+      try {
+        const savedFavs = localStorage.getItem('maalaq_favs_v2');
+        if (savedFavs) {
+          favoriteMovies = JSON.parse(savedFavs);
+        }
+      } catch (e) {
+        favoriteMovies = [];
+      }
+      updateFavoritesCounter();
+
+      renderMovies();
+      renderReviews();
+      setRating(5);
+      setupCinemaCanvas();
+
+      // ربط مستمعي أحداث الفيديو الحقيقي بشكل آمن ومحمي من الـ Null Pointer
+      if (html5Video) {
+        html5Video.addEventListener('timeupdate', updateHtml5Progress);
+        html5Video.addEventListener('loadedmetadata', () => {
+          const totalEl = document.getElementById('player-time-total');
+          if (totalEl) {
+            totalEl.innerText = formatTime(Math.floor(html5Video.duration));
+          }
+        });
+        html5Video.addEventListener('ended', () => {
+          isPlaying = false;
+          updatePlayIcons();
+        });
+      }
+
+      // تحميل فيلم صويلح والبحرين (ID 1) كبداية افتراضية واضحة ومطابقة ومثالية
+      playMovieById(1, false);
+    };
+
+    function setupCinemaCanvas() {
+      const canvas = document.getElementById('cinema-canvas');
+      if (!canvas) return;
+      canvas.width = canvas.parentElement.clientWidth;
+      canvas.height = canvas.parentElement.clientHeight;
+
+      window.addEventListener('resize', () => {
+        canvas.width = canvas.parentElement.clientWidth;
+        canvas.height = canvas.parentElement.clientHeight;
+      });
+    }
+
+    function startCanvasSimulation() {
+      const canvas = document.getElementById('cinema-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let frame = 0;
+
+      canvasInterval = setInterval(() => {
+        if (!isPlaying || currentMovieType !== 'simulation') return;
+        frame++;
+        customPlayTime++;
+        
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        ctx.fillStyle = 'rgba(245, 158, 11, 0.05)';
+        for (let i = 0; i < 5; i++) {
+          ctx.beginPath();
+          ctx.arc(
+            (canvas.width / 4) * i + Math.sin(frame * 0.05 + i) * 30,
+            canvas.height / 2 + Math.cos(frame * 0.05 + i) * 50,
+            100 + Math.sin(frame * 0.02) * 50,
+            0,
+            Math.PI * 2
+          );
+          ctx.fill();
+        }
+
+        if (isAmbientOn && frame % 60 === 0) {
+          const colors = ['rgba(245, 158, 11, 0.15)', 'rgba(239, 68, 68, 0.15)', 'rgba(59, 130, 246, 0.15)', 'rgba(16, 185, 129, 0.15)'];
+          const randomColor = colors[Math.floor(Math.random() * colors.length)];
+          const ambientBg = document.getElementById('ambient-bg');
+          if (ambientBg) ambientBg.style.backgroundColor = randomColor;
+        }
+
+        const currentProgress = (customPlayTime * 0.1) % 100;
+        const progressBar = document.getElementById('player-progress-bar');
+        if (progressBar) progressBar.style.width = currentProgress + '%';
+        
+        const totalSecs = 9000;
+        const currentSecs = Math.floor((currentProgress / 100) * totalSecs);
+        const currentTimeEl = document.getElementById('player-time-current');
+        if (currentTimeEl) currentTimeEl.innerText = formatTime(currentSecs);
+
+        updateSubtitleSim(currentSecs);
+
+      }, 100);
+    }
+
+    function updateHtml5Progress() {
+      if (currentMovieType !== 'html5' || !html5Video) return;
+      const progress = (html5Video.currentTime / html5Video.duration) * 100;
+      const progressBar = document.getElementById('player-progress-bar');
+      if (progressBar) progressBar.style.width = progress + '%';
+      
+      const currentTimeEl = document.getElementById('player-time-current');
+      if (currentTimeEl) currentTimeEl.innerText = formatTime(Math.floor(html5Video.currentTime));
+
+      updateSubtitleSim(Math.floor(html5Video.currentTime));
+
+      if (isAmbientOn && Math.floor(html5Video.currentTime) % 4 === 0) {
+        const colors = ['rgba(245, 158, 11, 0.2)', 'rgba(239, 68, 68, 0.2)', 'rgba(59, 130, 246, 0.2)', 'rgba(16, 185, 129, 0.2)'];
+        const color = colors[Math.floor(html5Video.currentTime) % colors.length];
+        const ambientBg = document.getElementById('ambient-bg');
+        if (ambientBg) ambientBg.style.backgroundColor = color;
+      }
+    }
+
+    function formatTime(seconds) {
+      if (isNaN(seconds)) return "00:00";
+      const h = Math.floor(seconds / 3600);
+      const m = Math.floor((seconds % 3600) / 60);
+      const s = seconds % 60;
+      if (h > 0) {
+        return `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+      }
+      return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+    }
+
+    function updateSubtitleSim(sec) {
+      const subtitleBox = document.getElementById('subtitles-text');
+      if (!subtitleBox) return;
+      
+      const subSelectEl = document.getElementById('subtitle-select');
+      const select = subSelectEl ? subSelectEl.value : 'ar';
+      
+      if (select === 'off') {
+        if (subtitlesContainer) subtitlesContainer.style.opacity = '0';
+        return;
+      }
+      if (subtitlesContainer) subtitlesContainer.style.opacity = '1';
+
+      if (select === 'ar') {
+        if (sec < 10) subtitleBox.innerText = "قناة المعلاق ترحب بكم.. مشاهدة ممتعة ومبهرة للجميع!";
+        else if (sec < 25) subtitleBox.innerText = "[موسيقى تصويرية حماسية تبدأ بالعزف في الخلفية]";
+        else if (sec < 45) subtitleBox.innerText = "أهلاً ومرحباً بكم في حلقة جديدة وسفرة شيقة لقروب المعلاق!";
+        else if (sec < 70) subtitleBox.innerText = "صويلح: الجمس الأخضر جاهز وخطوط السفر بانتظارنا!";
+        else subtitleBox.innerText = "عرض سينمائي ممتع ومستمر عبر منصة المعلاق الرسمية للأفلام..";
+      } else {
+        if (sec < 10) subtitleBox.innerText = "MaalaqFilm Welcomes you! Sit back and enjoy the show.";
+        else if (sec < 25) subtitleBox.innerText = "[Thrilling and spectacular background music starts]";
+        else if (sec < 45) subtitleBox.innerText = "Welcome back to an incredible new adventure with Maalaq squad!";
+        else if (sec < 70) subtitleBox.innerText = "Sowailah: The green GMC is fully prepared for our next trip!";
+        else subtitleBox.innerText = "Premium cinematic screening continues on MaalaqFilm...";
+      }
+    }
+
+    function togglePlay() {
+      isPlaying = !isPlaying;
+      updatePlayIcons();
+
+      if (isPlaying) {
+        if (currentMovieType === 'html5') {
+          if (html5Video) html5Video.play();
+        } else if (currentMovieType === 'simulation') {
+          startCanvasSimulation();
+        }
+        showToast("جاري العرض الآن", "استمتع بمشاهدة العرض والإضاءة المحيطية الفعالة!");
+      } else {
+        if (currentMovieType === 'html5') {
+          if (html5Video) html5Video.pause();
+        } else if (currentMovieType === 'simulation') {
+          clearInterval(canvasInterval);
+        }
+      }
+    }
+
+    function updatePlayIcons() {
+      const centralPlay = document.getElementById('central-play-icon');
+      const centralPause = document.getElementById('central-pause-icon');
+      const controlPlay = document.getElementById('control-play-icon');
+      const controlPause = document.getElementById('control-pause-icon');
+
+      if (isPlaying) {
+        if (centralPlay) centralPlay.classList.add('hidden');
+        if (centralPause) centralPause.classList.remove('hidden');
+        if (controlPlay) controlPlay.classList.add('hidden');
+        if (controlPause) controlPause.classList.remove('hidden');
+      } else {
+        if (centralPlay) centralPlay.classList.remove('hidden');
+        if (centralPause) centralPause.classList.add('hidden');
+        if (controlPlay) controlPlay.classList.remove('hidden');
+        if (controlPause) controlPause.classList.add('hidden');
+      }
+    }
+
+    function toggleMute() {
+      isMuted = !isMuted;
+      const volumeIcon = document.getElementById('volume-icon');
+      if (html5Video) html5Video.muted = isMuted;
+
+      if (isMuted) {
+        if (volumeIcon) volumeIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />`;
+        const slider = document.getElementById('volume-slider');
+        if (slider) slider.value = 0;
+        showToast("كتم الصوت", "تم كتم صوت المشغل.");
+      } else {
+        if (volumeIcon) volumeIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />`;
+        const slider = document.getElementById('volume-slider');
+        if (slider) slider.value = 80;
+        if (html5Video) html5Video.volume = 0.8;
+      }
+    }
+
+    function setVolume(val) {
+      isMuted = val == 0;
+      if (html5Video) {
+        html5Video.volume = val / 100;
+        html5Video.muted = isMuted;
+      }
+    }
+
+    function toggleAmbient() {
+      isAmbientOn = !isAmbientOn;
+      const statusText = document.getElementById('ambient-status');
+      const ambientBtn = document.getElementById('ambient-btn');
+      
+      if (isAmbientOn) {
+        if (statusText) statusText.innerText = "نشطة";
+        if (ambientBtn) {
+          ambientBtn.classList.remove('border-zinc-800', 'text-zinc-500');
+          ambientBtn.classList.add('border-brand-gold/30', 'text-brand-gold');
+        }
+        const ambientBg = document.getElementById('ambient-bg');
+        if (ambientBg) ambientBg.style.opacity = '1';
+      } else {
+        if (statusText) statusText.innerText = "معطلة";
+        if (ambientBtn) {
+          ambientBtn.classList.add('border-zinc-800', 'text-zinc-500');
+          ambientBtn.classList.remove('border-brand-gold/30', 'text-brand-gold');
+        }
+        const ambientBg = document.getElementById('ambient-bg');
+        if (ambientBg) ambientBg.style.opacity = '0';
+      }
+    }
+
+    function toggleLightsOut() {
+      isLightsOut = !isLightsOut;
+      const btnText = document.getElementById('lights-out-status');
+      const body = document.body;
+
+      if (isLightsOut) {
+        body.classList.add('cinema-focus-active');
+        if (btnText) btnText.innerText = "تشغيل الأضواء";
+        showToast("وضع السينما", "تم تعتيم أضواء الخلفية لتوفير مشاهدة غامرة.");
+      } else {
+        body.classList.remove('cinema-focus-active');
+        if (btnText) btnText.innerText = "إطفاء الأضواء";
+      }
+    }
+
+    function toggleTheaterMode() {
+      isTheaterMode = !isTheaterMode;
+      const cinemaContainer = document.getElementById('cinema-container');
+      const statusText = document.getElementById('theater-status');
+
+      if (isTheaterMode) {
+        if (cinemaContainer) {
+          cinemaContainer.classList.remove('max-w-5xl');
+          cinemaContainer.classList.add('max-w-7xl');
+        }
+        if (statusText) statusText.innerText = "الوضع العادي";
+        showToast("وضع المسرح", "تم توسيع أبعاد شاشة العرض.");
+      } else {
+        if (cinemaContainer) {
+          cinemaContainer.classList.remove('max-w-7xl');
+          cinemaContainer.classList.add('max-w-5xl');
+        }
+        if (statusText) statusText.innerText = "وضع المسرح";
+      }
+    }
+
+    function changeSubtitles(val) {
+      showToast("تحديث الترجمة", `تم تبديل إعدادات الترجمة بنجاح.`);
+      updateSubtitleSim(currentMovieType === 'html5' && html5Video ? Math.floor(html5Video.currentTime) : 0);
+    }
+
+    function seekPlayer(event) {
+      const progressContainer = document.getElementById('progress-container');
+      if (!progressContainer) return;
+      const rect = progressContainer.getBoundingClientRect();
+      const clickX = event.clientX - rect.left;
+      const width = rect.width;
+      const percentage = (clickX / width) * 100;
+
+      if (currentMovieType === 'html5' && html5Video) {
+        html5Video.currentTime = (percentage / 100) * html5Video.duration;
+      } else if (currentMovieType === 'simulation') {
+        customPlayTime = (percentage / 100) * 100;
+      }
+      
+      const progressBar = document.getElementById('player-progress-bar');
+      if (progressBar) progressBar.style.width = percentage + '%';
+      showToast("تعديل وقت العرض", "تم تقديم/تأخير العرض فورياً.");
+    }
+
+    function playMovie(title, cat, desc, themeClass, videoUrl, isAutoplay = true) {
+      if (html5Video) {
+        html5Video.pause();
+        html5Video.src = "";
+      }
+      if (iframeVideo) {
+        iframeVideo.src = "";
+      }
+      clearInterval(canvasInterval);
+      
+      isPlaying = false;
+      customPlayTime = 0;
+
+      const playingTitle = document.getElementById('current-playing-title');
+      if (playingTitle) playingTitle.innerText = title;
+      const featTitle = document.getElementById('featured-title');
+      if (featTitle) featTitle.innerText = title;
+      const featDesc = document.getElementById('featured-desc');
+      if (featDesc) featDesc.innerText = desc;
+
+      const posterImg = document.getElementById('featured-poster-img');
+      if (posterImg) {
+        const videoIdMatch = videoUrl.match(/(?:v=|\/embed\/|\/watch\?v=|\.be\/)([^#\&\?]+)/);
+        if (videoIdMatch && videoIdMatch[1]) {
+          posterImg.src = `https://img.youtube.com/vi/${videoIdMatch[1]}/maxresdefault.jpg`;
+        }
+      }
+
+      if (videoUrl && (videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be') || videoUrl.includes('embed'))) {
+        currentMovieType = 'iframe';
+        if (html5Video) html5Video.classList.add('hidden');
+        if (cinemaCanvas) cinemaCanvas.classList.add('hidden');
+        const overlay = document.getElementById('cinema-canvas-overlay');
+        if (overlay) overlay.classList.add('hidden');
+        if (iframeVideo) iframeVideo.classList.remove('hidden');
+        
+        const workingEmbedUrl = getYouTubeEmbedUrl(videoUrl, isAutoplay);
+        if (iframeVideo) iframeVideo.src = workingEmbedUrl;
+        isPlaying = isAutoplay;
+        
+        if (subtitlesContainer) subtitlesContainer.classList.add('hidden');
+        if (controlsContainer) controlsContainer.classList.add('opacity-40', 'pointer-events-none');
+        
+        const centralPlay = document.getElementById('central-play-btn');
+        if (isAutoplay) {
+          if (centralPlay) centralPlay.classList.add('hidden');
+          showToast("جاري العرض السينمائي", `استمتع بمتابعة: ${title}`);
+        } else {
+          if (centralPlay) centralPlay.classList.remove('hidden');
+        }
+
+      } else {
+        currentMovieType = 'simulation';
+        if (html5Video) html5Video.classList.add('hidden');
+        if (iframeVideo) iframeVideo.classList.add('hidden');
+        if (cinemaCanvas) cinemaCanvas.classList.remove('hidden');
+        const overlay = document.getElementById('cinema-canvas-overlay');
+        if (overlay) overlay.classList.remove('hidden');
+        
+        if (subtitlesContainer) subtitlesContainer.classList.remove('hidden');
+        if (controlsContainer) controlsContainer.classList.remove('opacity-40', 'pointer-events-none');
+        const centralPlay = document.getElementById('central-play-btn');
+        if (centralPlay) centralPlay.classList.remove('hidden');
+
+        if (isAutoplay) {
+          togglePlay();
+        }
+      }
+      
+      const ambientBg = document.getElementById('ambient-bg');
+      if (ambientBg) {
+        if (themeClass && (themeClass.includes('yellow') || themeClass.includes('gold') || themeClass.includes('amber'))) {
+          ambientBg.style.backgroundColor = 'rgba(245, 158, 11, 0.2)';
+        } else if (themeClass && (themeClass.includes('red') || themeClass.includes('rose'))) {
+          ambientBg.style.backgroundColor = 'rgba(239, 68, 68, 0.2)';
+        } else if (themeClass && (themeClass.includes('blue') || themeClass.includes('cyan'))) {
+          ambientBg.style.backgroundColor = 'rgba(59, 130, 246, 0.2)';
+        } else if (themeClass && (themeClass.includes('green') || themeClass.includes('emerald'))) {
+          ambientBg.style.backgroundColor = 'rgba(16, 185, 129, 0.2)';
+        } else {
+          ambientBg.style.backgroundColor = 'rgba(139, 92, 246, 0.2)';
+        }
+      }
+
+      const cinemaRoom = document.getElementById('cinema-room');
+      if (cinemaRoom) cinemaRoom.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function playMovieById(id, isAutoplay = true) {
+      const m = allMovies.find(movie => movie.id === id);
+      if (m) {
+        playMovie(m.title, m.category, m.synopsis, m.theme, m.videoUrl, isAutoplay);
+      }
+    }
+
+    function toggleFavorite(id, event) {
+      if (event) event.stopPropagation();
+      
+      const index = favoriteMovies.indexOf(id);
+      if (index === -1) {
+        favoriteMovies.push(id);
+        showToast("أضيف للمفضلة ❤️", "تمت إضافة العرض إلى قائمتك المفضلة بنجاح.");
+      } else {
+        favoriteMovies.splice(index, 1);
+        showToast("حُذف من المفضلة 💔", "تمت إزالة العرض من قائمتك المفضلة.");
+      }
+      
+      try {
+        localStorage.setItem('maalaq_favs_v2', JSON.stringify(favoriteMovies));
+      } catch (e) {}
+
+      updateFavoritesCounter();
+      renderMovies();
+    }
+
+    function updateFavoritesCounter() {
+      const countSpan = document.getElementById('favorites-count');
+      if (countSpan) {
+        countSpan.innerText = favoriteMovies.length;
+      }
+    }
+
+    function renderMovies() {
+      const grid = document.getElementById('movies-grid');
+      if (!grid) return;
+      grid.innerHTML = '';
+
+      const filtered = allMovies.filter(m => {
+        let matchesCat = false;
+        if (activeCategory === 'الكل') {
+          matchesCat = true;
+        } else if (activeCategory === 'مفضلتي') {
+          matchesCat = favoriteMovies.includes(m.id);
+        } else {
+          matchesCat = m.category === activeCategory;
+        }
+
+        const query = document.getElementById('search-input').value.toLowerCase();
+        const matchesSearch = m.title.toLowerCase().includes(query) || m.synopsis.toLowerCase().includes(query);
+        return matchesCat && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full py-16 text-center text-zinc-500 font-bold">
+            🔍 عذراً، لم نجد أي عروض تطابق مواصفات بحثك الحالي..
+          </div>
+        `;
+        return;
+      }
+
+      filtered.forEach(m => {
+        const isFav = favoriteMovies.includes(m.id);
+        grid.innerHTML += `
+          <div class="group bg-zinc-950 border border-zinc-900/85 rounded-2xl overflow-hidden hover:border-brand-gold/60 transition-all duration-300 shadow-lg hover:shadow-card-hover flex flex-col justify-between">
+            <div class="relative overflow-hidden aspect-video cursor-pointer" onclick="playMovieById(${m.id})">
+              <div class="absolute inset-0 bg-gradient-to-tr ${m.theme} opacity-90 group-hover:scale-110 transition-transform duration-500"></div>
+              <img src="${m.cover}" alt="بوستر ${m.title}" onerror="this.src='https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg'" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90">
+              <div class="absolute inset-0 bg-gradient-to-t from-black via-black/35 to-transparent"></div>
+              
+              <span class="absolute top-3 right-3 bg-black/85 text-brand-gold text-[10px] font-black px-2.5 py-1 rounded-lg border border-brand-gold/20 z-10 font-sans">
+                ⭐ ${m.rating}
+              </span>
+
+              <button onclick="toggleFavorite(${m.id}, event)" class="absolute top-3 left-3 bg-black/85 text-white hover:text-brand-red p-2 rounded-full border border-zinc-800 transition duration-300 z-10">
+                <svg class="w-4 h-4 ${isFav ? 'fill-brand-red text-brand-red' : 'fill-none text-gray-300'}" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>
+              </button>
+            </div>
+            
+            <div class="p-4 md:p-5 relative flex-1 flex flex-col justify-between">
+              <div>
+                <span class="text-[10px] text-brand-gold font-bold uppercase tracking-widest block mb-1">${m.category} • 2024</span>
+                <h4 onclick="playMovieById(${m.id})" class="text-white font-extrabold text-sm md:text-base leading-tight mb-2 hover:text-brand-gold cursor-pointer transition-colors line-clamp-1">${m.title}</h4>
+                <p class="text-zinc-400 text-xs line-clamp-2 leading-relaxed mb-4">${m.synopsis}</p>
+              </div>
+              
+              <button onclick="playMovieById(${m.id})" class="w-full bg-zinc-900 group-hover:bg-brand-gold text-white group-hover:text-black text-xs font-bold py-2.5 rounded-xl transition duration-300 flex items-center justify-center gap-1.5 mt-auto">
+                <span>تشغيل السجل الآن</span>
+                🍿
+              </button>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function setCategory(cat) {
+      activeCategory = cat;
+      const buttons = document.querySelectorAll('.cat-btn');
+      buttons.forEach(btn => {
+        if (btn.innerText.includes(cat) || (cat === 'الكل' && btn.innerText === 'الكل')) {
+          btn.classList.add('bg-brand-gold', 'text-black', 'shadow-glow-gold');
+          btn.classList.remove('bg-zinc-900', 'text-zinc-400', 'border-zinc-800');
+        } else {
+          btn.classList.remove('bg-brand-gold', 'text-black', 'shadow-glow-gold');
+          btn.classList.add('bg-zinc-900', 'text-zinc-400', 'border-zinc-800');
+        }
+      });
+      renderMovies();
+    }
+
+    function filterMovies() {
+      renderMovies();
+    }
+
+    function renderReviews() {
+      const container = document.getElementById('reviews-list');
+      if (!container) return;
+      container.innerHTML = '';
+      
+      initialReviews.forEach(r => {
+        let starsHtml = '';
+        for (let i = 1; i <= 5; i++) {
+          starsHtml += `
+            <svg class="w-4 h-4 ${i <= r.rating ? 'text-brand-gold' : 'text-zinc-700'} fill-current" viewBox="0 0 24 24">
+              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+            </svg>
+          `;
+        }
+
+        container.innerHTML += `
+          <div class="bg-black/30 border border-zinc-900 hover:border-zinc-800 p-5 rounded-2xl flex flex-col gap-2 transition duration-200">
+            <div class="flex items-center justify-between">
+              <span class="text-sm font-bold text-white flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-brand-gold"></span>
+                ${r.name}
+              </span>
+              <div class="flex items-center gap-0.5">
+                ${starsHtml}
+              </div>
+            </div>
+            <p class="text-xs md:text-sm text-zinc-300 leading-relaxed">${r.msg}</p>
+          </div>
+        `;
+      });
+    }
+
+    function setRating(stars) {
+      activeRating = stars;
+      const starButtons = document.querySelectorAll('.star-btn');
+      starButtons.forEach((btn, index) => {
+        if (index < stars) {
+          btn.classList.add('text-brand-gold');
+          btn.classList.remove('text-zinc-600');
+        } else {
+          btn.classList.remove('text-brand-gold');
+          btn.classList.add('text-zinc-600');
+        }
+      });
+    }
+
+    function addReview(event) {
+      event.preventDefault();
+      const name = document.getElementById('reviewer-name').value;
+      const message = document.getElementById('reviewer-message').value;
+
+      initialReviews.unshift({ name, rating: activeRating, msg: message });
+      renderReviews();
+
+      document.getElementById('reviewer-name').value = '';
+      document.getElementById('reviewer-message').value = '';
+      setRating(5);
+
+      showToast("تم إرسال مراجعتك!", "شكراً لك على تقييم قناة المعلاق، يظهر تعليقك الآن في القائمة.");
+    }
+
+    function openPaymentModal(packageName, price) {
+      const modalName = document.getElementById('modal-package-name');
+      const modalPrice = document.getElementById('modal-package-price');
+      if (modalName) modalName.innerText = packageName;
+      if (modalPrice) modalPrice.innerText = price;
+      
+      const modal = document.getElementById('payment-modal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        setTimeout(() => {
+          modal.classList.remove('opacity-0');
+          const panel = modal.querySelector('.scale-95');
+          if (panel) panel.classList.remove('scale-95');
+        }, 50);
+      }
+    }
+
+    function closePaymentModal() {
+      const modal = document.getElementById('payment-modal');
+      if (modal) {
+        modal.classList.add('opacity-0');
+        const panel = modal.querySelector('.scale-95');
+        if (panel) panel.classList.add('scale-95');
+        setTimeout(() => {
+          modal.classList.add('hidden');
+        }, 300);
+      }
+    }
+
+    function processPayment(event) {
+      event.preventDefault();
+      closePaymentModal();
+      
+      const modalPkgName = document.getElementById('modal-package-name');
+      const pkg = modalPkgName ? modalPkgName.innerText : 'باقة VIP';
+      
+      showToast("تهانينا الحارة! 🎉", `تم تفعيل اشتراكك في ${pkg} بنجاح، مرحباً بك في عالم السينما الفاخر.`);
+      
+      const payForm = document.getElementById('payment-form');
+      if (payForm) payForm.reset();
+    }
+
+    function showToast(title, description) {
+      const toast = document.getElementById('success-toast');
+      if (!toast) return;
+      
+      const toastTitle = document.getElementById('toast-title');
+      const toastDesc = document.getElementById('toast-desc');
+      
+      if (toastTitle) toastTitle.innerText = title;
+      if (toastDesc) toastDesc.innerText = description;
+
+      toast.classList.remove('hidden');
+      setTimeout(() => {
+        toast.classList.remove('translate-y-10');
+      }, 50);
+
+      setTimeout(() => {
+        toast.classList.add('translate-y-10');
+        setTimeout(() => {
+          toast.classList.add('hidden');
+        }, 300);
+      }, 5000);
+    }
+  </script>
+</body>
+</html>
