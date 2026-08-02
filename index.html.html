@@ -24,6 +24,36 @@
 </head>
 <body class="bg-brand-pitch text-gray-200">
 
+  <!-- الواجهة الرئيسية (Hero Banner) لفيلم الكرفان -->
+  <div class="relative w-full h-[500px] sm:h-[600px] overflow-hidden mb-8 border-b border-zinc-800">
+    <!-- خلفية البوستر مع التدرج السينمائي -->
+    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('poster.png'), url('https://img.youtube.com/vi/1S_G-pI46MQ/maxresdefault.jpg');">
+      <div class="absolute inset-0 bg-gradient-to-t from-brand-pitch via-brand-pitch/70 to-transparent"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-brand-pitch via-brand-pitch/60 to-transparent"></div>
+    </div>
+
+    <!-- محتوى الواجهة -->
+    <div class="relative z-10 max-w-7xl mx-auto h-full flex flex-col justify-end p-6 sm:p-12 pb-16">
+      <div class="max-w-2xl">
+        <span class="inline-block bg-brand-gold text-black text-xs font-black px-3 py-1 rounded-full mb-3 shadow-lg">
+          العرض الرئيسي الأصلي ⭐ 9.9
+        </span>
+        <h1 class="text-4xl sm:text-6xl font-black text-white mb-4 leading-tight drop-shadow-md">
+          فيلم الكرفان
+        </h1>
+        <p class="text-sm sm:text-base text-gray-300 mb-6 leading-relaxed">
+          إنتاج أصلي حصري من المعلاق. رحلة مليئة بالمشاعر والبحث عن الحقيقة في طرق لا تقودك للمنزل بل لذاتك.
+        </p>
+        <div class="flex flex-wrap gap-4 items-center">
+          <button onclick="playMovieById(17)" class="bg-brand-gold text-black font-bold text-base px-8 py-3.5 rounded-xl hover:bg-amber-400 hover:scale-105 transition duration-300 flex items-center gap-2 shadow-xl shadow-amber-500/10">
+            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            مشاهدة الفيلم الآن
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- القسم الرئيسي للمحتوى -->
   <div id="movies-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-10">
     <!-- سيتم ملء الشبكة برمجياً -->
@@ -37,7 +67,7 @@
         category: `دراما`,
         year: 2026,
         rating: 9.9,
-        synopsis: `إنتاجالمغرب الاساسيه للهلا تقودك للمنزل بل لذاتك.`,
+        synopsis: `إنتاج أصلي حصري من المعلاق. رحلة مليئة بالمشاعر والبحث عن الحقيقة في طرق لا تقودك للمنزل بل لذاتك.`,
         cover: `poster.png`,
         theme: `from-amber-700 to-black`,
         videoUrl: `https://www.youtube.com/watch?v=1S_G-pI46MQ`
