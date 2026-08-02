@@ -38,9 +38,9 @@
         year: 2026,
         rating: 9.9,
         synopsis: `إنتاج أصلي حصري من المعلاق. رحلة مليئة بالمشاعر والبحث عن الحقيقة في طرق لا تقودك للمنزل بل لذاتك.`,
-        cover: `https://i.ibb.co/Lh2W1jJ/Al-Maalaq-Al-Karavan-Theatrical-Poster-UHD-2-2.jpg`,
+        cover: `poster.png`,
         theme: `from-amber-700 to-black`,
-        videoUrl: `https://youtube.com/shorts/CjDyKviSs_o`
+        videoUrl: `https://www.youtube.com/watch?v=1S_G-pI46MQ`
       },
       {
         id: 1,
@@ -68,7 +68,7 @@
       allMovies.forEach(m => {
         grid.innerHTML += `
           <div class="bg-zinc-900 p-4 rounded-xl shadow-lg border border-zinc-800 hover:border-brand-gold transition-all duration-300">
-            <img src="${m.cover}" class="w-full h-48 object-cover rounded-lg mb-4" alt="${m.title}">
+            <img src="${m.cover}" onerror="this.src='https://img.youtube.com/vi/1S_G-pI46MQ/maxresdefault.jpg'" class="w-full h-48 object-cover rounded-lg mb-4" alt="${m.title}">
             <h3 class="text-white font-bold mb-2">${m.title}</h3>
             <p class="text-xs text-zinc-400 mb-4">${m.synopsis}</p>
             <button onclick="playMovieById(${m.id})" class="bg-brand-gold text-black px-4 py-2 rounded-lg text-sm font-bold w-full hover:bg-amber-500 transition">مشاهدة الآن</button>
