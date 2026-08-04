@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>قناة المعلاق للأفلام - MaalaqFilm</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Cairo', 'Tajawal', 'sans-serif'] },
+          colors: {
+            brand: { gold: '#F59E0B', darkGold: '#D97706', charcoal: '#0C0C0E', pitch: '#050507', red: '#EF4444' }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-brand-pitch text-gray-200">
+
+  <!-- القسم الرئيسي للمحتوى -->
+  <div id="movies-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-10">
+    <!-- سيتم ملء الشبكة برمجياً -->
+  </div>
+
+  <script>
+    const allMovies = [
+      {
+        id: 17,
+        title: `فيلم الكرفان`,
+        category: `دراما`,
+        year: 2026,
+        rating: 9.9,
+        synopsis: `إنتاج أصلي حصري من المعلاق. رحلة مليئة بالمشاعر والبحث عن الحقيقة في طرق لا تقودك للمنزل بل لذاتك.`,
+        cover: `https://i.ibb.co/Lh2W1jJ/Al-Maalaq-Al-Karavan-Theatrical-Poster-UHD-2-2.jpg`,
+        theme: `from-amber-700 to-black`,
+        videoUrl: `https://youtube.com/shorts/CjDyKviSs_o`
+      },
+      {
+        id: 1,
+        title: `رحلة البحرين الكارثية مع صويلح`,
+        category: `كوميدي`,
+        year: 2024,
+        rating: 9.8,
+        synopsis: `مغامرة كوميدية فريدة عبر الحدود يقطعها طاقم المعلاق داخل الجمس الأخضر التاريخي.`,
+        cover: `https://img.youtube.com/vi/rSxqWAfiwLU/maxresdefault.jpg`,
+        theme: `from-amber-600 to-orange-950`,
+        videoUrl: `https://www.youtube.com/watch?v=rSxqWAfiwLU`
+      }
+    ];
+
+    function playMovieById(id) {
+        const m = allMovies.find(movie => movie.id === id);
+        if (m) {
+            window.open(m.videoUrl, '_blank');
+        }
+    }
+
+    function renderMovies() {
+      const grid = document.getElementById('movies-grid');
+      grid.innerHTML = ''; 
+      allMovies.forEach(m => {
+        grid.innerHTML += `
+          <div class="bg-zinc-900 p-4 rounded-xl shadow-lg border border-zinc-800 hover:border-brand-gold transition-all duration-300">
+            <img src="${m.cover}" class="w-full h-48 object-cover rounded-lg mb-4" alt="${m.title}">
+            <h3 class="text-white font-bold mb-2">${m.title}</h3>
+            <p class="text-xs text-zinc-400 mb-4">${m.synopsis}</p>
+            <button onclick="playMovieById(${m.id})" class="bg-brand-gold text-black px-4 py-2 rounded-lg text-sm font-bold w-full hover:bg-amber-500 transition">مشاهدة الآن</button>
+          </div>
+        `;
+      });
+    }
+    
+    renderMovies();
+  </script>
+</body>
+</html>
