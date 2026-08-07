@@ -173,18 +173,17 @@
         <div class="absolute bottom-10 left-10 w-96 h-96 bg-red-600/10 rounded-full blur-3xl pulse-bg pointer-events-none"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
                 
                 <!-- Hero Content Details -->
-                <div class="lg:col-span-7 space-y-6 text-right">
+                <div class="lg:col-span-5 space-y-6 text-right">
                     <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-maalaq-gold/10 border border-maalaq-gold/30 text-maalaq-gold text-xs font-bold">
                         <span class="w-2.5 h-2.5 rounded-full bg-maalaq-gold animate-ping"></span>
                         <span id="heroBadge">العرض السينمائي المميز لهذا الشهر</span>
                     </div>
 
                     <h1 class="font-black text-white leading-tight tracking-normal" id="heroTitle">
-                        <span class="block text-xl sm:text-3xl font-bold text-gray-300 mb-1">أفلام ومسلسلات</span>
-                        <span class="block text-3xl sm:text-5xl gold-gradient-text">قناة المعلاق</span>
+                        <span class="block text-4xl sm:text-6xl gold-gradient-text">قناة المعلاق</span>
                     </h1>
 
                     <p class="text-gray-300 text-base sm:text-lg leading-relaxed max-w-2xl font-light" id="heroDescription">
@@ -219,20 +218,23 @@
                     </div>
                 </div>
 
-                <!-- Hero Featured Movie Poster Card -->
-                <div class="lg:col-span-5 relative">
-                    <div class="relative rounded-2xl overflow-hidden border-2 border-maalaq-gold/40 shadow-2xl bg-maalaq-card group gold-border-glow">
-                        <img id="heroPoster" src="https://img.youtube.com/vi/1S_G-pI46MQ/hqdefault.jpg" alt="فيلم الكرفان" class="w-full h-[420px] object-cover group-hover:scale-105 transition-transform duration-700">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                <!-- Hero Featured Movie Poster Card (Bigger & Prominent) -->
+                <div class="lg:col-span-7 relative">
+                    <div class="relative rounded-3xl overflow-hidden border-2 border-maalaq-gold/50 shadow-2xl bg-maalaq-card group gold-border-glow hover:border-maalaq-gold transition-all duration-500">
+                        <img id="heroPoster" src="https://img.youtube.com/vi/1S_G-pI46MQ/hqdefault.jpg" alt="فيلم الكرفان" class="w-full h-[480px] sm:h-[560px] object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
                         
-                        <div class="absolute bottom-6 right-6 left-6 text-right space-y-2.5">
-                            <span class="bg-red-600 text-white text-[10px] uppercase font-extrabold px-3 py-1 rounded-md shadow-lg">فيلم درامي قصير</span>
-                            <h3 class="text-2xl font-bold text-white" id="heroCardTitle">فيلم قصير | الكرفان</h3>
-                            <p class="text-xs text-gray-300 line-clamp-2">دراما سينمائية مشوقة تأخذكم داخل أجواء الكرفان والأسرار والمواقف الصعبة بأسلوب المعلاق المثير.</p>
+                        <div class="absolute bottom-8 right-8 left-8 text-right space-y-3">
+                            <div class="flex items-center gap-2">
+                                <span class="bg-red-600 text-white text-xs font-black px-3.5 py-1.5 rounded-lg shadow-lg">فيلم سينمائي مميز</span>
+                                <span class="bg-black/60 text-maalaq-gold text-xs font-bold px-3 py-1.5 rounded-lg backdrop-blur-md border border-maalaq-gold/30">جودة عالية 4K</span>
+                            </div>
+                            <h3 class="text-3xl sm:text-4xl font-black text-white drop-shadow-md" id="heroCardTitle">فيلم قصير | الكرفان</h3>
+                            <p class="text-sm text-gray-200 line-clamp-3 leading-relaxed max-w-xl">دراما سينمائية مشوقة تأخذكم داخل أجواء الكرفان والأسرار والمواقف الصعبة بأسلوب المعلاق المثير والمميز.</p>
                             
-                            <button onclick="openTrailerModal('1S_G-pI46MQ', 'فيلم قصير | الكرفان')" class="mt-2 w-full bg-maalaq-gold text-black font-extrabold py-3 rounded-xl shadow-lg hover:bg-yellow-400 transition-all flex items-center justify-center gap-2 text-sm">
-                                <i class="fa-solid fa-play"></i>
-                                <span>تشغيل العمل السينمائي</span>
+                            <button onclick="openTrailerModal('1S_G-pI46MQ', 'فيلم قصير | الكرفان')" class="mt-3 w-full bg-gradient-to-r from-maalaq-gold via-yellow-400 to-yellow-500 text-black font-black py-4 rounded-xl shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3 text-base">
+                                <i class="fa-solid fa-play text-xl"></i>
+                                <span>تشغيل العمل السينمائي الكبير الآن</span>
                             </button>
                         </div>
                     </div>
